@@ -24,6 +24,7 @@ class App extends Component {
         this.setState({
           loading: true,
         });
+        page = 1;
         const { totalHits, hits } = await fetchPhoto(inputText, 1);
         if (hits < 1) {
           Notify.failure('Sorry, but no images were found for your search.');
