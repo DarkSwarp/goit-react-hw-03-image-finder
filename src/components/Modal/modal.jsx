@@ -1,29 +1,37 @@
-import ImageModal from 'react-modal';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { createPortal } from 'react-dom';
 
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-  },
-};
+const modalRootContainer = document.querySelector('#modal-root');
 
-ImageModal.setAppElement('#root');
+export class Modal extends Component {
+  componentDidMount() {
+    window.addEventListener('keydown', this.ESCpress);
+  }
 
-export const Modal = ({ isOpen, image, onClose }) => {
-  return (
-    <Modal
-      isOpen={isOpen}
-      onRequestClose={onClose}
-      style={customStyles}
-      contentLabel="Image modal"
-    >
-      <div>
-        <img src={image} />
-      </div>
-    </Modal>
-  );
+  componentWillUnmount() {
+    window.removeEventListener('keydown', this.ESCpress);
+  }
+
+  ESCpress = e => {
+    if (e.code === `Escape`) {
+      return this.props.closeESC();
+    }
+  };
+
+  render() {
+    return createPortal(
+      <div className="overlay" onClick={this.props.close}>
+        <div className="modal">
+          <img className="large-img" src={this.props.largeImageURL} alt="" />
+        </div>
+      </div>,
+      modalRootContainer
+    );
+  }
+}
+
+Modal.propTypes = {
+  closeESC: PropTypes.func,
+  close: PropTypes.func,
 };

@@ -1,4 +1,4 @@
-import {ImageGalleryItem} from 'components/ImageGalleryItem/imagegalleryitem';
+import ImageGalleryItem from 'components/ImageGalleryItem/imagegalleryitem';
 import PropTypes from 'prop-types';
 
 export function ImageGallery({hits}) {

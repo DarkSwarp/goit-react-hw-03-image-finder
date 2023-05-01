@@ -62,6 +62,9 @@ class App extends Component {
     }
   };
 
+  openModal = e => {
+  
+}
   render() {
     return (
       <div>
