@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { createPortal } from 'react-dom';
+// import { createPortal } from 'react-dom';
 
-const modalRootContainer = document.querySelector('#modal-root');
+// const modalRootContainer = document.querySelector('#modal-root');
 
 export class Modal extends Component {
   componentDidMount() {
@@ -19,14 +19,24 @@ export class Modal extends Component {
     }
   };
 
+  // render() {
+  //   return createPortal(
+  //     <div className="overlay" onClick={this.props.close}>
+  //       <div className="modal">
+  //         <img className="large-img" src={this.props.largeImageURL} alt="" />
+  //       </div>
+  //     </div>,
+  //     modalRootContainer
+  //   );
+  // }
   render() {
-    return createPortal(
+    return (
       <div className="overlay" onClick={this.props.close}>
         <div className="modal">
           <img className="large-img" src={this.props.largeImageURL} alt="" />
         </div>
-      </div>,
-      modalRootContainer
+      </div>
+      
     );
   }
 }
